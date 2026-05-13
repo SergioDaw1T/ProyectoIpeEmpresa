@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyecto Aseguradora - Sergio González Muñoz</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a1929;
+            color: #e0e0e0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            box-sizing: border-box;
+            page-break-after: always;
+            position: relative;
+            background: linear-gradient(135deg, #0a1929 0%, #1a3a5c 100%);
+            border-left: 10px solid #00bcd4;
+        }
+
+        h1 {
+            color: #00bcd4;
+            font-size: 28pt;
+            margin-top: 0;
+            border-bottom: 2px solid #00bcd4;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 18pt;
+            margin-top: 20px;
+        }
+
+        .content {
+            font-size: 12pt;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .code-block {
+            background-color: #050d16;
+            color: #8be9fd;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 10pt;
+            margin: 20px 0;
+            border: 1px solid #1a3a5c;
+            white-space: pre-wrap;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #00bcd4;
+            color: #0a1929;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 10px;
+        }
+
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            border-left: none;
+        }
+
+        .cover h1 {
+            font-size: 42pt;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .cover-sub {
+            font-size: 20pt;
+            color: #00bcd4;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20mm;
+            right: 20mm;
+            font-size: 10pt;
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DIAPOSITIVA 1: PORTADA -->
+    <div class="page cover">
+        <h1>PROYECTO EVOLUTIVO:<br>GESTIÓN DE ASEGURADORA</h1>
+        <div class="cover-sub">2º DAW — Curso 2025/2026</div>
+        <p style="font-size: 24pt; margin-top: 60px;">Sergio González Muñoz</p>
+        <div class="footer">Memoria Técnica del Proyecto</div>
+    </div>
+
+    <!-- DIAPOSITIVA 2: VISIÓN GENERAL -->
+    <div class="page">
+        <h1>01. Visión General</h1>
+        <div class="content">
+            <p>La aplicación cubre toda la operativa de una aseguradora. No es solo un CRUD simple, son 20 entidades que se relacionan entre sí. Está dividida en varios módulos funcionales:</p>
+            <ul>
+                <li><strong>Administración:</strong> Gestión interna (roles, empleados, sucursales).</li>
+                <li><strong>Comercial:</strong> Captación y asesoramiento (clientes, mediadores).</li>
+                <li><strong>Pólizas:</strong> Núcleo del negocio (coberturas, bienes, documentos).</li>
+                <li><strong>Facturación:</strong> Contabilidad de recibos y primas.</li>
+                <li><strong>Siniestros:</strong> Flujo complejo de peritaciones e indemnizaciones.</li>
+            </ul>
+            <p>Se diseñó un diagrama entidad-relación previo para asegurar la integridad de las claves foráneas en Oracle antes de proceder a la codificación.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 3: LARAVEL -->
+    <div class="page">
+        <h1>02. Arquitectura Laravel</h1>
+        <div class="content">
+            <p>Uso del patrón <strong>Controller → Service → Repository → Model</strong> para garantizar un mantenimiento escalable.</p>
+            <div class="code-block">
+app/Http/Controllers/RolController.php
+app/Services/Implementations/RolServiceImpl.php
+app/Repositories/Implementations/RolRepository.php
+app/Models/Rol.php
+            </div>
+            <p>La lógica de negocio se extrajo a servicios para evitar controladores masivos, utilizando inyección de dependencias mediante interfaces registradas en el <code>AppServiceProvider</code>.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 4: ANGULAR -->
+    <div class="page">
+        <h1>03. Frontend en Angular</h1>
+        <div class="content">
+            <p>Desarrollo modular con más de 80 componentes organizados por entidad (Alta, Búsqueda, Modificar, Detalles).</p>
+            <ul>
+                <li><strong>Formularios:</strong> Implementación mediante <code>ngModel</code> para agilidad en el desarrollo.</li>
+                <li><strong>Routing:</strong> Estructura jerárquica con rutas hijas dentro de un dashboard centralizado.</li>
+                <li><strong>Validación:</strong> Construcción manual de DTOs en el envío para asegurar el mapeo correcto con el backend.</li>
+            </ul>
+            <div class="code-block">
+const dto = new UsuarioDTO();
+dto.username = form.value.username;
+dto.password_hash = form.value.password_hash;
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 5: DISEÑO -->
+    <div class="page">
+        <h1>04. Diseño y UX</h1>
+        <div class="content">
+            <p>Personalización visual profunda para alejarse de los estilos por defecto de Bootstrap.</p>
+            <ul>
+                <li><strong>Paleta:</strong> Degradados en azul marino (#0a1929) y acentos en Teal (#00bcd4).</li>
+                <li><strong>Navegación:</strong> Header con menús desplegables categorizados por módulos de negocio.</li>
+                <li><strong>Assets:</strong> Gestión de imágenes estáticas mediante configuración personalizada en <code>angular.json</code>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 6: DTOS TS -->
+    <div class="page">
+        <h1>05. Decisión: DTOs Planos</h1>
+        <div class="content">
+            <span class="badge">Optimización</span>
+            <p>Se eliminaron getters y setters innecesarios en TypeScript, optando por propiedades públicas inicializadas.</p>
+            <div class="code-block">
+export class ClienteDTO {
+    id_cliente: number = 0;
+    nombre: string = '';
+    activo: string = 'S';
+}
+            </div>
+            <p>Esto redujo el código un 60% y facilitó la serialización JSON nativa.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 7: RUTAS -->
+    <div class="page">
+        <h1>06. Decisión: Consistencia API</h1>
+        <div class="content">
+            <p>Estandarización de nombres de rutas en plural (ej. <code>/getUsuarios</code>) tanto en Laravel como en los servicios de Angular para evitar errores 404.</p>
+            <p>Se realizó una refactorización masiva para asegurar que la comunicación entre ambos frameworks fuera totalmente simétrica.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 8: FKs -->
+    <div class="page">
+        <h1>07. Decisión: Selectores FK</h1>
+        <div class="content">
+            <span class="badge">Integridad</span>
+            <p>Implementación de carga dinámica de datos para claves foráneas. Antes de crear una póliza, el sistema carga automáticamente la lista de clientes, mediadores y productos disponibles.</p>
+            <p>Esto garantiza que el usuario nunca intente insertar un ID inexistente en la base de datos Oracle.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 9: INJECTION -->
+    <div class="page">
+        <h1>08. Decisión: Constructor Injection</h1>
+        <div class="content">
+            <p>Se optó por la inyección de dependencias clásica por constructor frente a la función <code>inject()</code>.</p>
+            <p><strong>Razones:</strong> Consistencia con otros lenguajes (Java/PHP) y mayor visibilidad de las dependencias requeridas por cada componente al inicio del fichero.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 10: MISC -->
+    <div class="page">
+        <h1>09. Decisiones Técnicas</h1>
+        <div class="content">
+            <ul>
+                <li><strong>snake_case:</strong> Sincronización total con los nombres de columna de Oracle.</li>
+                <li><strong>Autenticación:</strong> Sistema de Login integrado con redirecciones automáticas.</li>
+                <li><strong>Null Coalescing:</strong> Uso de <code>??</code> en PHP para manejar datos opcionales de la DB.</li>
+                <li><strong>Limpieza:</strong> Eliminación de componentes redundantes para optimizar el bundle.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 11: PROBLEMAS -->
+    <div class="page">
+        <h1>10. Retos y Soluciones</h1>
+        <div class="content">
+            <p><strong>Oracle Case Sensitivity:</strong> Configuración de modelos con nombres en mayúsculas (<code>$table = 'POLIZAS'</code>).</p>
+            <p><strong>Tipos de Datos:</strong> Unificación de booleanos a strings ('S'/'N') para compatibilidad con VARCHAR2(1).</p>
+            <p><strong>Angular Build:</strong> Ajuste de los límites de tamaño en <code>angular.json</code> debido al gran volumen de componentes.</p>
+            <p><strong>Infraestructura:</strong> Recuperación de la base de datos tras un fallo crítico del servicio XE.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 12: CIERRE -->
+    <div class="page cover">
+        <h1>FIN DE LA PRESENTACIÓN</h1>
+        <p style="font-size: 18pt;">Gracias por su atención</p>
+        <div style="margin-top: 40px; color: #00bcd4;">Sergio González Muñoz - 2º DAW</div>
+    </div>
+
+</body>
+</html>
