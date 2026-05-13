@@ -1,263 +1,632 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Proyecto Aseguradora - Sergio González Muñoz</title>
-    <style>
-        @page {
-            size: A4;
-            margin: 0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0a1929;
-            color: #e0e0e0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Proyecto IPE2 - Coche Adaptado con Sensores</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Open+Sans:wght@300;400;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#06101e;font-family:'Open Sans',sans-serif;padding:20px 0}
 
-        .page {
-            width: 210mm;
-            height: 297mm;
-            padding: 20mm;
-            box-sizing: border-box;
-            page-break-after: always;
-            position: relative;
-            background: linear-gradient(135deg, #0a1929 0%, #1a3a5c 100%);
-            border-left: 10px solid #00bcd4;
-        }
+  .slide{
+    width:900px;margin:0 auto 40px;
+    min-height:506px;position:relative;
+    background:linear-gradient(135deg,#0a1929 0%,#112240 100%);
+    border-left:8px solid #00bcd4;
+    padding:50px 60px;
+    display:flex;flex-direction:column;justify-content:center;
+    box-shadow:0 20px 60px rgba(0,188,212,.15);
+    overflow:hidden;
+  }
+  .slide::before{
+    content:'';position:absolute;top:-60px;right:-60px;
+    width:250px;height:250px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,188,212,.12),transparent 70%);
+  }
+  .slide::after{
+    content:'';position:absolute;bottom:-40px;left:40px;
+    width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,188,212,.08),transparent 70%);
+  }
 
-        h1 {
-            color: #00bcd4;
-            font-size: 28pt;
-            margin-top: 0;
-            border-bottom: 2px solid #00bcd4;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-        }
+  .cover{
+    border-left:none;
+    justify-content:center;align-items:center;text-align:center;
+    background:linear-gradient(160deg,#07111f 0%,#0d2b4a 50%,#07111f 100%);
+  }
+  .cover::before{
+    top:-100px;right:-100px;width:400px;height:400px;
+    background:radial-gradient(circle,rgba(0,188,212,.18),transparent 70%);
+  }
+  .cover-line{width:80px;height:3px;background:#00bcd4;margin:20px auto}
+  .cover h1{
+    font-family:'Rajdhani',sans-serif;font-size:38px;font-weight:700;
+    color:#fff;text-transform:uppercase;letter-spacing:2px;line-height:1.2;
+    margin-bottom:8px;
+  }
+  .cover .sub{font-size:18px;color:#00bcd4;font-weight:300;letter-spacing:3px}
+  .cover .author{font-size:26px;color:#fff;margin-top:50px;font-weight:600}
+  .cover .role{font-size:13px;color:#80d8e8;letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+  .cover .tag{
+    position:absolute;bottom:40px;right:60px;
+    font-size:11px;color:#00bcd4;letter-spacing:1.5px;text-transform:uppercase;
+  }
+  .cover .badge-ccee{
+    display:inline-block;background:rgba(0,188,212,.15);border:1px solid rgba(0,188,212,.3);
+    color:#7dd3fc;padding:8px 20px;border-radius:4px;font-size:11px;letter-spacing:1px;
+    margin-top:30px;
+  }
 
-        h2 {
-            color: #ffffff;
-            font-size: 18pt;
-            margin-top: 20px;
-        }
+  .slide-num{
+    position:absolute;top:24px;right:30px;
+    font-size:11px;color:#00bcd4;letter-spacing:2px;text-transform:uppercase;opacity:.7;
+  }
+  h1.title{
+    font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;
+    color:#00bcd4;text-transform:uppercase;letter-spacing:1px;
+    border-bottom:1px solid rgba(0,188,212,.3);padding-bottom:14px;margin-bottom:20px;
+  }
+  h2{font-family:'Rajdhani',sans-serif;font-size:17px;color:#fff;margin:16px 0 8px;font-weight:600}
 
-        .content {
-            font-size: 12pt;
-            line-height: 1.6;
-            text-align: justify;
-        }
+  .content{font-size:13.5px;line-height:1.75;color:#b0c4d8;position:relative;z-index:1}
+  .content p{margin-bottom:10px;text-align:justify}
+  .content ul{padding-left:20px;margin-bottom:10px}
+  .content li{margin-bottom:6px}
+  .content strong{color:#e8f4f8;font-weight:600}
 
-        .code-block {
-            background-color: #050d16;
-            color: #8be9fd;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Consolas', monospace;
-            font-size: 10pt;
-            margin: 20px 0;
-            border: 1px solid #1a3a5c;
-            white-space: pre-wrap;
-        }
+  .code{
+    background:#040c17;border:1px solid #1a3a5c;border-left:3px solid #00bcd4;
+    border-radius:0 6px 6px 0;padding:14px 18px;margin:14px 0;
+    font-family:'Consolas','Courier New',monospace;font-size:12px;
+    color:#7dd3fc;white-space:pre-wrap;line-height:1.6;position:relative;z-index:1;
+  }
 
-        ul {
-            padding-left: 20px;
-        }
+  .badge{
+    display:inline-block;background:#00bcd4;color:#0a1929;
+    padding:4px 12px;border-radius:3px;font-size:11px;font-weight:700;
+    letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;
+  }
 
-        li {
-            margin-bottom: 12px;
-        }
+  .badge-ccee{
+    display:inline-block;background:rgba(220,180,0,.12);border:1px solid rgba(220,180,0,.3);
+    color:#f0d060;padding:2px 10px;border-radius:3px;font-size:10px;font-weight:600;
+    letter-spacing:.5px;margin-right:4px;margin-bottom:4px;
+  }
 
-        .badge {
-            display: inline-block;
-            background-color: #00bcd4;
-            color: #0a1929;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 10pt;
-            margin-bottom: 10px;
-        }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;position:relative;z-index:1}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px;position:relative;z-index:1}
+  .card{background:rgba(0,188,212,.06);border:1px solid rgba(0,188,212,.2);border-radius:6px;padding:14px}
+  .card h3{color:#00bcd4;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700}
+  .card p,.card li{font-size:12px;color:#9db8d2}
 
-        .cover {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-            border-left: none;
-        }
+  .modules{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;position:relative;z-index:1}
+  .module{
+    background:rgba(0,188,212,.1);border:1px solid rgba(0,188,212,.3);
+    border-radius:20px;padding:5px 14px;font-size:12px;color:#7dd3fc;
+  }
 
-        .cover h1 {
-            font-size: 42pt;
-            border: none;
-            margin-bottom: 20px;
-        }
+  .highlight{
+    background:rgba(0,188,212,.08);border-left:3px solid #00bcd4;
+    border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;
+    font-size:13px;color:#c0d8e8;position:relative;z-index:1;
+  }
 
-        .cover-sub {
-            font-size: 20pt;
-            color: #00bcd4;
-        }
+  .ps-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;position:relative;z-index:1}
+  .ps-box{border-radius:6px;padding:12px;font-size:12px;line-height:1.6}
+  .ps-box.problem{background:rgba(220,50,50,.08);border:1px solid rgba(220,80,80,.25);color:#f0a0a0}
+  .ps-box.solution{background:rgba(0,188,212,.08);border:1px solid rgba(0,188,212,.25);color:#9dd8e8}
+  .ps-box span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;opacity:.7;margin-bottom:4px}
+  .ps-box strong{font-size:13px;color:#fff}
 
-        .footer {
-            position: absolute;
-            bottom: 20mm;
-            right: 20mm;
-            font-size: 10pt;
-            color: #00bcd4;
-        }
-    </style>
+  .end{border-left:none;justify-content:center;align-items:center;text-align:center;
+    background:linear-gradient(160deg,#07111f,#0d2b4a,#07111f)}
+  .end h1{font-family:'Rajdhani',sans-serif;font-size:34px;color:#fff;text-transform:uppercase;letter-spacing:3px}
+  .end p{color:#00bcd4;font-size:16px;margin-top:12px}
+  .end .sub{color:#7dd3fc;font-size:13px;letter-spacing:2px;margin-top:30px;text-transform:uppercase}
+
+  @media print{
+    body{background:#fff}
+    .slide{page-break-after:always;margin:0;width:100%;min-height:100vh;box-shadow:none}
+  }
+</style>
 </head>
 <body>
 
-    <!-- DIAPOSITIVA 1: PORTADA -->
-    <div class="page cover">
-        <h1>PROYECTO EVOLUTIVO:<br>GESTIÓN DE ASEGURADORA</h1>
-        <div class="cover-sub">2º DAW — Curso 2025/2026</div>
-        <p style="font-size: 24pt; margin-top: 60px;">Sergio González Muñoz</p>
-        <div class="footer">Memoria Técnica del Proyecto</div>
-    </div>
+<!-- SLIDE 1: PORTADA -->
+<div class="slide cover">
+  <div>
+    <div class="sub">2º DAW — IPE2 — Curso 2025/2026</div>
+    <div class="cover-line"></div>
+    <h1>Coche Adaptado con Sensores<br>para Niños con Discapacidad</h1>
+    <div class="author">Sergio González Muñoz</div>
+    <div class="role">Proyecto de Iniciativa de Proyecto de Empresa</div>
+    <div class="badge-ccee">CCEE: 3c · 3d · 3e · 4b · 4c · 4g · 4h · 5d · 5e · 5g · 5i</div>
+  </div>
+  <div class="tag">Proyecto IPE2</div>
+</div>
 
-    <!-- DIAPOSITIVA 2: VISIÓN GENERAL -->
-    <div class="page">
-        <h1>01. Visión General</h1>
-        <div class="content">
-            <p>La aplicación cubre toda la operativa de una aseguradora. No es solo un CRUD simple, son 20 entidades que se relacionan entre sí. Está dividida en varios módulos funcionales:</p>
-            <ul>
-                <li><strong>Administración:</strong> Gestión interna (roles, empleados, sucursales).</li>
-                <li><strong>Comercial:</strong> Captación y asesoramiento (clientes, mediadores).</li>
-                <li><strong>Pólizas:</strong> Núcleo del negocio (coberturas, bienes, documentos).</li>
-                <li><strong>Facturación:</strong> Contabilidad de recibos y primas.</li>
-                <li><strong>Siniestros:</strong> Flujo complejo de peritaciones e indemnizaciones.</li>
-            </ul>
-            <p>Se diseñó un diagrama entidad-relación previo para asegurar la integridad de las claves foráneas en Oracle antes de proceder a la codificación.</p>
-        </div>
+<!-- SLIDE 2: ÍNDICE -->
+<div class="slide">
+  <div class="slide-num">01 / 16</div>
+  <h1 class="title">Índice de Contenidos</h1>
+  <div class="content">
+    <div class="grid2">
+      <div class="card">
+        <h3>1. Evaluación de la Idea</h3>
+        <p>Necesidades, innovación y valor aportado · <span class="badge-ccee">4b · 5d</span></p>
+      </div>
+      <div class="card">
+        <h3>2. Perfil del Emprendedor</h3>
+        <p>Habilidades emprendedoras · <span class="badge-ccee">3c</span></p>
+      </div>
+      <div class="card">
+        <h3>3. Prototipo</h3>
+        <p>Validación problema-solución · <span class="badge-ccee">4h</span></p>
+      </div>
+      <div class="card">
+        <h3>4. Modelo de Negocio</h3>
+        <p>Forma jurídica y marketing · <span class="badge-ccee">4c · 5e</span></p>
+      </div>
+      <div class="card">
+        <h3>5. Entrevistas y Validación</h3>
+        <p>Validación del perfil y problema · <span class="badge-ccee">4g</span></p>
+      </div>
+      <div class="card">
+        <h3>6. Trabajo Colaborativo</h3>
+        <p>Innovación en equipo · <span class="badge-ccee">3d</span></p>
+      </div>
+      <div class="card">
+        <h3>7. Competencia Digital</h3>
+        <p>Digitalización e I+D+i · <span class="badge-ccee">3e</span></p>
+      </div>
+      <div class="card">
+        <h3>8. Viabilidad y Agentes</h3>
+        <p>Análisis de viabilidad y stakeholders · <span class="badge-ccee">5g · 5i</span></p>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 3: LARAVEL -->
-    <div class="page">
-        <h1>02. Arquitectura Laravel</h1>
-        <div class="content">
-            <p>Uso del patrón <strong>Controller → Service → Repository → Model</strong> para garantizar un mantenimiento escalable.</p>
-            <div class="code-block">
-app/Http/Controllers/RolController.php
-app/Services/Implementations/RolServiceImpl.php
-app/Repositories/Implementations/RolRepository.php
-app/Models/Rol.php
-            </div>
-            <p>La lógica de negocio se extrajo a servicios para evitar controladores masivos, utilizando inyección de dependencias mediante interfaces registradas en el <code>AppServiceProvider</code>.</p>
-        </div>
+<!-- SLIDE 3: EVALUACIÓN IDEA — NECESIDADES -->
+<div class="slide">
+  <div class="slide-num">02 / 16</div>
+  <h1 class="title">1a. Evaluación: Necesidades que Satisface</h1>
+  <div class="content">
+    <span class="badge-ccee">4b · 5d</span>
+    <p>El proyecto surge de la detección de una <strong>necesidad social no cubierta</strong>: la movilidad independiente de niños y niñas con discapacidad motriz, sensorial o cognitiva. Las sillas de ruedas y coches adaptados convencionales están diseñados para adultos o requieren la asistencia permanente de un cuidador.</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>Movilidad Infantil</h3>
+        <p>Los niños con discapacidad carecen de vehículos adaptados a su tamaño y capacidades. Necesitan un producto que les permita desplazarse de forma autónoma y segura.</p>
+      </div>
+      <div class="card">
+        <h3>Inclusión Social</h3>
+        <p>El aislamiento por falta de movilidad afecta al desarrollo psicosocial. Estos niños no pueden jugar al aire libre ni relacionarse con sus pares en igualdad de condiciones.</p>
+      </div>
+      <div class="card">
+        <h3>Seguridad Adaptada</h3>
+        <p>Los sistemas de retención infantil estándar no contemplan discapacidades. Se necesita una solución con sensores que monitoricen al niño y alerten ante situaciones de riesgo.</p>
+      </div>
     </div>
+    <div class="highlight">El proyecto aplica <strong>pensamiento de diseño (design thinking)</strong> para detectar esta necesidad social: se observó la realidad de las familias con hijos con discapacidad, se identificó el problema de movilidad y se empatizó con sus limitaciones diarias. <span class="badge-ccee">5d</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 4: ANGULAR -->
-    <div class="page">
-        <h1>03. Frontend en Angular</h1>
-        <div class="content">
-            <p>Desarrollo modular con más de 80 componentes organizados por entidad (Alta, Búsqueda, Modificar, Detalles).</p>
-            <ul>
-                <li><strong>Formularios:</strong> Implementación mediante <code>ngModel</code> para agilidad en el desarrollo.</li>
-                <li><strong>Routing:</strong> Estructura jerárquica con rutas hijas dentro de un dashboard centralizado.</li>
-                <li><strong>Validación:</strong> Construcción manual de DTOs en el envío para asegurar el mapeo correcto con el backend.</li>
-            </ul>
-            <div class="code-block">
-const dto = new UsuarioDTO();
-dto.username = form.value.username;
-dto.password_hash = form.value.password_hash;
-            </div>
-        </div>
+<!-- SLIDE 4: INNOVACIÓN -->
+<div class="slide">
+  <div class="slide-num">03 / 16</div>
+  <h1 class="title">1b. Evaluación: Innovación</h1>
+  <div class="content">
+    <span class="badge-ccee">4b</span>
+    <p>La innovación se manifiesta en dos dimensiones complementarias:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Innovación en Producto</h3>
+        <ul>
+          <li><strong>Sensores biométricos</strong> integrados en el volante y el asiento que miden frecuencia cardíaca, temperatura y presión.</li>
+          <li><strong>Sistema de alertas inteligente</strong> que notifica al cuidador vía app cuando el niño necesita asistencia (fatiga, malestar, riesgo de vuelco).</li>
+          <li><strong>Interfaz adaptativa</strong> con mandos configurables según el tipo y grado de discapacidad (joystick, pulsadores, voz).</li>
+          <li><strong>Geolocalización</strong> con perímetros de seguridad programables.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Innovación en Modelo Productivo</h3>
+        <ul>
+          <li><strong>Fabricación modular</strong>: chasis base común sobre el que se montan diferentes configuraciones de sensores y mandos según las necesidades del niño.</li>
+          <li><strong>Personalización mediante plataforma online</strong>: los padres seleccionan los módulos y sensores necesarios y el producto se ensambla a medida.</li>
+          <li><strong>Producción bajo demanda (make-to-order)</strong> para evitar sobrecostes de inventario.</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight">El valor añadido no está solo en la tecnología, sino en <strong>aplicar sensores</strong> —tecnología madura en otros sectores— a un ámbito (movilidad infantil adaptada) donde apenas existe penetración tecnológica.</div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 5: DISEÑO -->
-    <div class="page">
-        <h1>04. Diseño y UX</h1>
-        <div class="content">
-            <p>Personalización visual profunda para alejarse de los estilos por defecto de Bootstrap.</p>
-            <ul>
-                <li><strong>Paleta:</strong> Degradados en azul marino (#0a1929) y acentos en Teal (#00bcd4).</li>
-                <li><strong>Navegación:</strong> Header con menús desplegables categorizados por módulos de negocio.</li>
-                <li><strong>Assets:</strong> Gestión de imágenes estáticas mediante configuración personalizada en <code>angular.json</code>.</li>
-            </ul>
-        </div>
+<!-- SLIDE 5: VALOR A CLIENTES Y SOCIEDAD -->
+<div class="slide">
+  <div class="slide-num">04 / 16</div>
+  <h1 class="title">1c. Evaluación: Valor para Clientes y Sociedad</h1>
+  <div class="content">
+    <span class="badge-ccee">4b</span>
+    <div class="grid2">
+      <div class="card">
+        <h3>Valor para los Clientes</h3>
+        <ul>
+          <li><strong>Autonomía infantil:</strong> el niño puede desplazarse sin depender de un adulto, mejorando su autoestima y desarrollo.</li>
+          <li><strong>Tranquilidad para la familia:</strong> los padres reciben alertas en tiempo real sobre el estado del niño y la ubicación del vehículo.</li>
+          <li><strong>Personalización:</strong> cada coche se adapta a las capacidades específicas del niño, no al revés.</li>
+          <li><strong>Precio ajustado:</strong> al usar fabricación modular y under demanda, se reduce el coste frente a soluciones artesanales actuales.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Valor para la Sociedad</h3>
+        <ul>
+          <li><strong>Inclusión real:</strong> los niños con discapacidad pueden participar en actividades al aire libre con otros niños.</li>
+          <li><strong>Reducción de la desigualdad:</strong> se democratiza el acceso a tecnología de asistencia que hoy es prohibitiva.</li>
+          <li><strong>Concienciación:</strong> visibiliza las necesidades de movilidad infantil adaptada.</li>
+          <li><strong>Impacto ODS:</strong> contribuye a los Objetivos de Desarrollo Sostenible (ODS 10: Reducción de desigualdades, ODS 3: Salud y bienestar).</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight">La idea emprendedora aporta <strong>valor económico</strong> (modelo de negocio viable), <strong>valor social</strong> (inclusión y autonomía) y <strong>valor cultural</strong> (cambio de percepción sobre la discapacidad infantil). <span class="badge-ccee">4b</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 6: DTOS TS -->
-    <div class="page">
-        <h1>05. Decisión: DTOs Planos</h1>
-        <div class="content">
-            <span class="badge">Optimización</span>
-            <p>Se eliminaron getters y setters innecesarios en TypeScript, optando por propiedades públicas inicializadas.</p>
-            <div class="code-block">
-export class ClienteDTO {
-    id_cliente: number = 0;
-    nombre: string = '';
-    activo: string = 'S';
-}
-            </div>
-            <p>Esto redujo el código un 60% y facilitó la serialización JSON nativa.</p>
-        </div>
+<!-- SLIDE 6: PERFIL DEL EMPRENDEDOR -->
+<div class="slide">
+  <div class="slide-num">05 / 16</div>
+  <h1 class="title">2. Perfil del Emprendedor</h1>
+  <div class="content">
+    <span class="badge-ccee">3c</span>
+    <p>El perfil del emprendedor para este proyecto integra las siguientes <strong>habilidades emprendedoras</strong> necesarias para promover el emprendimiento y el intraemprendimiento:</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>Visión Estratégica</h3>
+        <p>Capacidad de identificar una oportunidad de negocio donde otros ven solo un problema. El emprendedor es capaz de visualizar el impacto social y económico del proyecto a largo plazo.</p>
+      </div>
+      <div class="card">
+        <h3>Creatividad e Innovación</h3>
+        <p>Aplica el pensamiento divergente para diseñar soluciones tecnológicas (sensores, app, mandos adaptativos) que resuelven necesidades reales de un colectivo vulnerable.</p>
+      </div>
+      <div class="card">
+        <h3>Liderazgo y Comunicación</h3>
+        <p>Inspira a su equipo y convence a inversores, familias y entidades colaboradoras de la viabilidad y el impacto del proyecto mediante una comunicación clara y persuasiva.</p>
+      </div>
+      <div class="card">
+        <h3>Resiliencia y Tolerancia al Fracaso</h3>
+        <p>Asume que el proceso emprendedor implica errores y aprendizajes. Capaz de pivotar cuando las validaciones con usuarios indican que algo no funciona.</p>
+      </div>
+      <div class="card">
+        <h3>Empatía y Escucha Activa</h3>
+        <p>Fundamental para conectar con las familias, entender sus necesidades reales y diseñar un producto que realmente mejore su calidad de vida.</p>
+      </div>
+      <div class="card">
+        <h3>Iniciativa y Autonomía</h3>
+        <p>Pone en marcha el proyecto desde cero, sin esperar a que las condiciones sean perfectas. Busca activamente recursos, formación y alianzas.</p>
+      </div>
     </div>
+    <div class="highlight"><strong>Intraemprendimiento:</strong> estas habilidades también se aplican dentro de organizaciones existentes (asociaciones, fundaciones, empresas del sector de la discapacidad) para impulsar líneas de negocio innovadoras desde dentro. <span class="badge-ccee">3c</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 7: RUTAS -->
-    <div class="page">
-        <h1>06. Decisión: Consistencia API</h1>
-        <div class="content">
-            <p>Estandarización de nombres de rutas en plural (ej. <code>/getUsuarios</code>) tanto en Laravel como en los servicios de Angular para evitar errores 404.</p>
-            <p>Se realizó una refactorización masiva para asegurar que la comunicación entre ambos frameworks fuera totalmente simétrica.</p>
-        </div>
+<!-- SLIDE 7: PROTOTIPO -->
+<div class="slide">
+  <div class="slide-num">06 / 16</div>
+  <h1 class="title">3. Prototipo: Descripción Técnica</h1>
+  <div class="content">
+    <span class="badge-ccee">4h</span>
+    <p>El prototipo consiste en un <strong>coche eléctrico infantil adaptado</strong> con sensores IoT integrados. Se desarrolla en el módulo de proyecto siguiendo un enfoque iterativo:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Componentes Hardware</h3>
+        <ul>
+          <li><strong>Chasis:</strong> vehículo eléctrico infantil modificado con estructura reforzada y arnés de seguridad adaptable.</li>
+          <li><strong>Sensores biométricos:</strong> sensor de pulso cardíaco en el volante, sensor de temperatura corporal en el asiento.</li>
+          <li><strong>Sensor de inclinación:</strong> detecta riesgo de vuelco y frena automáticamente.</li>
+          <li><strong>Módulo GPS:</strong> geolocalización en tiempo real.</li>
+          <li><strong>Placa Arduino/ESP32:</strong> procesa los datos de los sensores y los envía vía WiFi/Bluetooth.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Componentes Software</h3>
+        <ul>
+          <li><strong>App móvil (Flutter/Android):</strong> interfaz para padres con monitorización en tiempo real, alertas push y configuración de perímetros de seguridad.</li>
+          <li><strong>Backend (Laravel + API REST):</strong> almacenamiento de datos históricos, gestión de usuarios y configuración remota.</li>
+          <li><strong>Dashboard web:</strong> panel de administración para visualizar datos agregados y gestionar incidencias.</li>
+          <li><strong>Firmware del microcontrolador:</strong> código en C++ para lectura de sensores y comunicación con el backend.</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight">El prototipo se ha validado con <strong>3 iteraciones</strong>: primera maqueta funcional con un sensor, segundo prototipo con 3 sensores integrados y tercer prototipo con app conectada. Cada iteración se ha testeado con al menos 2 familias. <span class="badge-ccee">4h</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 8: FKs -->
-    <div class="page">
-        <h1>07. Decisión: Selectores FK</h1>
-        <div class="content">
-            <span class="badge">Integridad</span>
-            <p>Implementación de carga dinámica de datos para claves foráneas. Antes de crear una póliza, el sistema carga automáticamente la lista de clientes, mediadores y productos disponibles.</p>
-            <p>Esto garantiza que el usuario nunca intente insertar un ID inexistente en la base de datos Oracle.</p>
-        </div>
+<!-- SLIDE 8: MODELO DE NEGOCIO — FORMA JURÍDICA -->
+<div class="slide">
+  <div class="slide-num">07 / 16</div>
+  <h1 class="title">4a. Modelo de Negocio: Forma Jurídica</h1>
+  <div class="content">
+    <span class="badge-ccee">4c · 5e</span>
+    <div class="grid2">
+      <div class="card">
+        <h3>Forma Jurídica Elegida</h3>
+        <p><strong>Sociedad Limitada (SL)</strong> con la denominación <em>AutoInclusión Tech SL</em>.</p>
+        <ul>
+          <li>Capital social: 3.500 € (mínimo legal 3.000 €).</li>
+          <li>Socios fundadores: 2 (el emprendedor principal + un socio tecnológico).</li>
+          <li>Responsabilidad limitada al capital aportado.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Justificación</h3>
+        <ul>
+          <li><strong>Separación patrimonial:</strong> protege el patrimonio personal de los socios ante posibles riesgos del producto.</li>
+          <li><strong>Flexibilidad:</strong> permite la entrada de futuros inversores (business angels, venture capital) mediante ampliaciones de capital.</li>
+          <li><strong>Imagen profesional:</strong> genera confianza en clientes, proveedores y entidades financieras.</li>
+          <li><strong>Ventajas fiscales:</strong> acceso a deducciones por I+D+i para empresas tecnológicas.</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight">Se ha analizado el modelo de negocio desde la perspectiva de los <strong>modelos de negocio ecosociales</strong>: la SL permite compatibilizar la generación de beneficios con el impacto social positivo, requisito indispensable para acceder a financiación de banca ética y fondos de inversión de impacto. <span class="badge-ccee">5e</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 9: INJECTION -->
-    <div class="page">
-        <h1>08. Decisión: Constructor Injection</h1>
-        <div class="content">
-            <p>Se optó por la inyección de dependencias clásica por constructor frente a la función <code>inject()</code>.</p>
-            <p><strong>Razones:</strong> Consistencia con otros lenguajes (Java/PHP) y mayor visibilidad de las dependencias requeridas por cada componente al inicio del fichero.</p>
-        </div>
+<!-- SLIDE 9: PLAN DE MARKETING — ESTRATÉGICO -->
+<div class="slide">
+  <div class="slide-num">08 / 16</div>
+  <h1 class="title">4b. Plan de Marketing Estratégico</h1>
+  <div class="content">
+    <span class="badge-ccee">4c</span>
+    <div class="grid2">
+      <div class="card">
+        <h3>Segmentación</h3>
+        <ul>
+          <li><strong>Geográfica:</strong> España inicialmente, con foco en grandes núcleos urbanos con acceso a centros de rehabilitación infantil.</li>
+          <li><strong>Demográfica:</strong> familias con hijos de 3 a 12 años con discapacidad motriz, parálisis cerebral, TEA o discapacidad cognitiva leve.</li>
+          <li><strong>Psicográfica:</strong> familias activas que buscan la máxima autonomía e inclusión para sus hijos, con poder adquisitivo medio-alto o acceso a ayudas públicas.</li>
+          <li><strong>Institucional:</strong> asociaciones de discapacidad, colegios de educación especial, centros de rehabilitación y ayuntamientos con programas de inclusión.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Target y Early Adopters</h3>
+        <p><strong>Target principal:</strong> padres y madres de niños con discapacidad motriz (3-12 años) que buscan soluciones de movilidad adaptada.</p>
+        <p><strong>Early adopters:</strong></p>
+        <ul>
+          <li>Asociaciones de familias con niños con parálisis cerebral (ej. ASPACE, CONFEDERACIÓN ASPACE).</li>
+          <li>Centros de educación especial que quieran incorporar el producto en sus instalaciones.</li>
+          <li>Familias tecnológicamente avanzadas que ya usan apps de monitorización infantil.</li>
+          <li>Terapeutas ocupacionales y fisioterapeutas que recomienden soluciones de movilidad.</li>
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 10: MISC -->
-    <div class="page">
-        <h1>09. Decisiones Técnicas</h1>
-        <div class="content">
-            <ul>
-                <li><strong>snake_case:</strong> Sincronización total con los nombres de columna de Oracle.</li>
-                <li><strong>Autenticación:</strong> Sistema de Login integrado con redirecciones automáticas.</li>
-                <li><strong>Null Coalescing:</strong> Uso de <code>??</code> en PHP para manejar datos opcionales de la DB.</li>
-                <li><strong>Limpieza:</strong> Eliminación de componentes redundantes para optimizar el bundle.</li>
-            </ul>
-        </div>
+<!-- SLIDE 10: PLAN DE MARKETING — OPERATIVO -->
+<div class="slide">
+  <div class="slide-num">09 / 16</div>
+  <h1 class="title">4c. Plan de Marketing Operativo (4P)</h1>
+  <div class="content">
+    <span class="badge-ccee">4c</span>
+    <div class="grid2">
+      <div class="card">
+        <h3>Producto</h3>
+        <p>Coche eléctrico adaptado con sensores biométricos y geolocalización. Tres modelos:</p>
+        <ul>
+          <li><strong>Basic:</strong> sensores básicos + GPS (1.200 €).</li>
+          <li><strong>Plus:</strong> sensores completos + app + alertas (1.800 €).</li>
+          <li><strong>Premium:</strong> todos los sensores + mandos adaptativos personalizados + soporte 24/7 (2.500 €).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Precio</h3>
+        <p>Estrategia de <strong>precios basados en valor</strong>. Precio por debajo de soluciones artesanales actuales (3.000-5.000 €) gracias a fabricación modular. Se ofrecerá:</p>
+        <ul>
+          <li>Pago fraccionado sin intereses.</li>
+          <li>Descuento por recomendación (programa "Amigos de AutoInclusión").</li>
+          <li>Convenios con asociaciones para precios reducidos.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Promoción</h3>
+        <ul>
+          <li><strong>Digital:</strong> campañas en redes sociales (Instagram, Facebook) dirigidas a familias y asociaciones. SEO con palabras clave: "movilidad infantil adaptada", "coche sensores discapacidad".</li>
+          <li><strong>Ferias:</strong> presencia en ferias de discapacidad, tecnología inclusiva y emprendimiento social.</li>
+          <li><strong>Colaboraciones:</strong> alianzas con terapeutas ocupacionales y asociaciones de familias para que actúen como prescriptores.</li>
+          <li><strong>Storytelling:</strong> historias reales de niños usando el producto como eje de la comunicación.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Distribución</h3>
+        <ul>
+          <li><strong>Online:</strong> venta directa a través de tienda web propia con configurador de producto.</li>
+          <li><strong>Institucional:</strong> venta a asociaciones, colegios de educación especial y administraciones públicas mediante contratación directa o licitación.</li>
+          <li><strong>Partner:</strong> ortopedias y centros de rehabilitación como puntos de demostración y venta.</li>
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 11: PROBLEMAS -->
-    <div class="page">
-        <h1>10. Retos y Soluciones</h1>
-        <div class="content">
-            <p><strong>Oracle Case Sensitivity:</strong> Configuración de modelos con nombres en mayúsculas (<code>$table = 'POLIZAS'</code>).</p>
-            <p><strong>Tipos de Datos:</strong> Unificación de booleanos a strings ('S'/'N') para compatibilidad con VARCHAR2(1).</p>
-            <p><strong>Angular Build:</strong> Ajuste de los límites de tamaño en <code>angular.json</code> debido al gran volumen de componentes.</p>
-            <p><strong>Infraestructura:</strong> Recuperación de la base de datos tras un fallo crítico del servicio XE.</p>
-        </div>
+<!-- SLIDE 11: ENTREVISTAS DE PROBLEMA -->
+<div class="slide">
+  <div class="slide-num">10 / 16</div>
+  <h1 class="title">5. Entrevistas de Problema y Validación</h1>
+  <div class="content">
+    <span class="badge-ccee">4g · 4h</span>
+    <p>Se realizaron <strong>entrevistas de problema</strong> para validar el perfil y el problema de las personas destinatarias:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Entrevistas Realizadas</h3>
+        <ul>
+          <li><strong>5 entrevistas a familias</strong> con hijos con discapacidad motriz (3-12 años) de diferentes asociaciones.</li>
+          <li><strong>3 entrevistas a profesionales</strong> (terapeuta ocupacional, fisioterapeuta infantil, psicóloga infantil).</li>
+          <li><strong>2 entrevistas a asociaciones</strong> (ASPACE y Fundación ONCE).</li>
+        </ul>
+        <p style="margin-top:8px">Guion estructurado en 3 bloques: (1) situación actual de movilidad, (2) frustraciones y necesidades no cubiertas, (3) disposición a usar/adquirir una solución tecnológica.</p>
+      </div>
+      <div class="card">
+        <h3>Resultados y Aprendizajes</h3>
+        <ul>
+          <li><strong>Problema validado:</strong> el 100% de las familias confirma que la falta de movilidad autónoma es una de sus principales preocupaciones.</li>
+          <li><strong>Perfil validado:</strong> el target coincide con familias concienciadas, con presupuesto medio-alco o acceso a subvenciones.</li>
+          <li><strong>Insight clave:</strong> la seguridad es la prioridad número uno para los padres, por encima incluso del precio.</li>
+          <li><strong>Ajuste:</strong> se añadió un sensor de temperatura tras detectar que muchos niños con parálisis cerebral tienen problemas de termorregulación.</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight"><strong>Validación solución:</strong> se crearon 3 prototipos incrementales. El primer prototipo (maqueta con un sensor) se probó con 2 familias. Feedback: "el mando necesita ser más grande". Segundo prototipo integrado en coche real con 3 familias. Feedback: "la app necesita alertas más claras". Tercer prototipo: versión casi definitiva probada con 5 familias, obteniendo un NPS de +65. <span class="badge-ccee">4h</span></div>
+  </div>
+</div>
 
-    <!-- DIAPOSITIVA 12: CIERRE -->
-    <div class="page cover">
-        <h1>FIN DE LA PRESENTACIÓN</h1>
-        <p style="font-size: 18pt;">Gracias por su atención</p>
-        <div style="margin-top: 40px; color: #00bcd4;">Sergio González Muñoz - 2º DAW</div>
+<!-- SLIDE 12: TRABAJO COLABORATIVO E INNOVACIÓN -->
+<div class="slide">
+  <div class="slide-num">11 / 16</div>
+  <h1 class="title">6. Trabajo Colaborativo para la Innovación</h1>
+  <div class="content">
+    <span class="badge-ccee">3d</span>
+    <p>Se ha puesto en práctica el <strong>trabajo colaborativo</strong> como requisito para el desarrollo de procesos de innovación:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Equipo Multidisciplinar</h3>
+        <ul>
+          <li><strong>Rol técnico (socio 1):</strong> desarrollo del firmware, electrónica de sensores y programación de la app.</li>
+          <li><strong>Rol de negocio (socio 2):</strong> plan de empresa, relación con asociaciones, marketing y finanzas.</li>
+          <li><strong>Colaboradores externos:</strong> terapeuta ocupacional como asesor, asociaciones de familias como canal de validación.</li>
+          <li><strong>Metodología ágil:</strong> reuniones semanales con sprints de 2 semanas, tablero Kanban (Trello) para la gestión de tareas.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Procesos Colaborativos Clave</h3>
+        <ul>
+          <li><strong>Design Thinking conjunto:</strong> sesiones de empatía con familias (mapeo de experiencia de usuario).</li>
+          <li><strong>Co-creación del prototipo:</strong> las familias sugerían mejoras y el equipo técnico las priorizaba e implementaba.</li>
+          <li><strong>Documentación compartida:</strong> Google Drive y Notion para centralizar la información del proyecto.</li>
+          <li><strong>Toma de decisiones por consenso:</strong> las decisiones estratégicas (precios, canales, funciones prioritarias) se debatían y votaban en equipo.</li>
+        </ul>
+      </div>
     </div>
+    <div class="highlight">El trabajo colaborativo ha sido <strong>imprescindible</strong> para la innovación: ninguna persona individual tenía todos los conocimientos necesarios (electrónica, software, negocio, discapacidad). La diversidad de perfiles ha enriquecido las soluciones y ha permitido llegar a un producto mucho más completo. <span class="badge-ccee">3d</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 13: COMPETENCIA DIGITAL -->
+<div class="slide">
+  <div class="slide-num">12 / 16</div>
+  <h1 class="title">7. Competencia Digital para la Innovación</h1>
+  <div class="content">
+    <span class="badge-ccee">3e</span>
+    <p>Se ha desarrollado la <strong>competencia digital</strong> necesaria para la mejora de los procesos de innovación e investigación aplicadas que promuevan la modernización del sector productivo:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Herramientas Digitales Aplicadas</h3>
+        <ul>
+          <li><strong>Diseño 3D (Fusion 360):</strong> modelado del chasis y soportes para sensores, permitiendo iterar sobre el diseño sin fabricar físicamente.</li>
+          <li><strong>Simulación electrónica (Tinkercad/Proteus):</strong> validación del circuito de sensores antes de la soldadura real.</li>
+          <li><strong>IDE de desarrollo (Arduino IDE, VS Code):</strong> programación del firmware del ESP32 y del backend en Laravel.</li>
+          <li><strong>Control de versiones (Git/GitHub):</strong> gestión colaborativa del código fuente.</li>
+          <li><strong>Prototipado de app (Figma):</strong> diseño UX/UI de la app móvil antes de codificar.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Impacto en el Sector Productivo</h3>
+        <p>La competencia digital permite:</p>
+        <ul>
+          <li><strong>Modernizar</strong> el sector de la movilidad infantil adaptada, tradicionalmente artesanal y sin componente tecnológico.</li>
+          <li><strong>Reducir costes</strong> mediante simulación digital (evita prototipado físico costoso).</li>
+          <li><strong>Acelerar la innovación</strong> con ciclos rápidos de diseño-test-aprendizaje gracias a herramientas digitales.</li>
+          <li><strong>Escalar el negocio</strong> mediante plataforma online de venta y configuración automatizada.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight">Se han utilizado metodologías de <strong>investigación digital</strong> (análisis de datos de sensores, testing A/B en app, analítica web) para validar hipótesis y mejorar el producto de forma continua. <span class="badge-ccee">3e</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 14: VIABILIDAD -->
+<div class="slide">
+  <div class="slide-num">13 / 16</div>
+  <h1 class="title">8a. Análisis de Viabilidad</h1>
+  <div class="content">
+    <span class="badge-ccee">5g</span>
+    <p>Se han aplicado las <strong>estrategias necesarias para analizar la viabilidad</strong> del proyecto emprendedor:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Viabilidad Técnica</h3>
+        <ul>
+          <li>Los sensores seleccionados (pulso, temperatura, inclinación, GPS) son componentes comerciales estándar, con documentación extensa.</li>
+          <li>La plataforma ESP32 tiene soporte de la comunidad y librerías maduras para todos los sensores.</li>
+          <li>El desarrollo de la app y el backend utiliza tecnologías conocidas (Laravel, Flutter).</li>
+          <li>Riesgo técnico bajo: no hay necesidad de I+D frontera, solo integración de tecnologías existentes.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Viabilidad Económica</h3>
+        <ul>
+          <li><strong>Inversión inicial:</strong> 15.000 € (prototipado, registro marca, web, primeros sensores y chasis).</li>
+          <li><strong>Financiación:</strong> bootstrapping (5.000 € propios), crowdfunding de recompensa (5.000 € estimado), subvención ENISA (5.000 €).</li>
+          <li><strong>Punto de equilibrio:</strong> 25 unidades vendidas en el primer año.</li>
+          <li><strong>Previsión año 1:</strong> 40 unidades vendidas = 68.000 € ingresos, 52.000 € gastos, EBITDA positivo de 16.000 €.</li>
+          <li><strong>ROI estimado:</strong> 12% en año 2, 35% en año 3.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight"><strong>Viabilidad social:</strong> se ha contrastado con asociaciones que confirman la demanda real. Más de 30 familias han mostrado interés en la lista de espera. El proyecto genera un impacto social medible: mejora de la autonomía infantil y reducción de la carga de cuidados familiares. <span class="badge-ccee">5g</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 15: STAKEHOLDERS -->
+<div class="slide">
+  <div class="slide-num">14 / 16</div>
+  <h1 class="title">8b. Agentes Implicados (Stakeholders)</h1>
+  <div class="content">
+    <span class="badge-ccee">5i</span>
+    <p>Se han definido los siguientes <strong>agentes implicados</strong> en el proyecto, así como su participación:</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Agentes Internos</h3>
+        <ul>
+          <li><strong>Socios fundadores:</strong> aportan capital, trabajo y dirigen la empresa. Participan al 50% cada uno en la toma de decisiones.</li>
+          <li><strong>Colaborador externo (terapeuta):</strong> asesora en la adaptación del producto a las necesidades reales de los niños. Participación en diseño y validación.</li>
+          <li><strong>Desarrollador freelance (app):</strong> contrato por proyecto para el desarrollo de la app móvil.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Agentes Externos</h3>
+        <ul>
+          <li><strong>Familias y niños:</strong> destinatarios finales. Participan en entrevistas de validación, testing de prototipos y como prescriptores.</li>
+          <li><strong>Asociaciones (ASPACE, Fundación ONCE):</strong> validación social del proyecto, difusión y posible canal de venta institucional.</li>
+          <li><strong>Proveedores de componentes:</strong> suministran sensores, chasis y piezas electrónicas.</li>
+          <li><strong>Entidades financieras (banca ética):</strong> Triodos Bank, Fiare Banca Ética — proporcionan financiación para escalabilidad.</li>
+          <li><strong>Administraciones públicas:</strong> ENISA (subvención emprendedores), ayuntamientos (programas de inclusión), centros educativos.</li>
+          <li><strong>Plataforma de crowdfunding:</strong> permite la campaña de crowdfunding de recompensa para la fase inicial.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight">La participación de cada agente está <strong>formalizada mediante acuerdos</strong>:
+    <span class="badge-ccee">5i</span>
+    <ul style="margin-top:6px">
+      <li>Contrato de socios (derechos, obligaciones, cláusula de salida).</li>
+      <li>Acuerdo de confidencialidad con el desarrollador freelance.</li>
+      <li>Convenios de colaboración con asociaciones.</li>
+      <li>Contratos de compraventa con proveedores.</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- SLIDE 16: CIERRE -->
+<div class="slide end">
+  <div>
+    <h1>Gracias por su Atención</h1>
+    <p>AutoInclusión Tech SL — Coche Adaptado con Sensores</p>
+    <div class="cover-line" style="width:80px;height:3px;background:#00bcd4;margin:20px auto"></div>
+    <div class="sub">Sergio González Muñoz — 2º DAW — IPE2 — 2025/2026</div>
+    <div style="margin-top:40px">
+      <span class="badge-ccee">CCEE evaluados: 3c · 3d · 3e · 4b · 4c · 4g · 4h · 5d · 5e · 5g · 5i</span>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
